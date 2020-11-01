@@ -6,4 +6,19 @@
   <p> {{ this.userData.address.zipcode }}</p>
   <p> {{ this.userData.address.city }}</p>
   <p> {{ this.userData.website }}</p>
+
+
+<span>todos</span>
+  <ul>
+    <li *ngFor="let item of (todo | async)">
+      {{ item.id }}
+    </li>
+  </ul>
+
+  <span>posts</span>
+  <ul>
+    <li *ngFor="let item of (post | async)">
+      {{ item.id }}
+    </li>
+  </ul>
 </ng-container>

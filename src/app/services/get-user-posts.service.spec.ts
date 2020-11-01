@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { GetUserDetailsService } from './get-user-details.service';
+import { GetUserDetailsService } from './get-user-posts.service';
 
 describe('GetUserDetailsService', () => {
   let service: GetUserDetailsService;
@@ -14,3 +14,4 @@ describe('GetUserDetailsService', () => {
     expect(service).toBeTruthy();
   });
 });
+
