@@ -18,7 +18,7 @@ export class UsersComponent implements OnInit {
   }
 
   postData(value) {
-    this.shared.setPost(value);
+    this.shared.setUser(value);
   }
 
 }

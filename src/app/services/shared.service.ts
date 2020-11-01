@@ -20,8 +20,7 @@ export class SharedService {
     return this.user;
   }
 
-  setPost(value) {
+  setUser(value) {
     this.user = value;
-    console.log(this.user);
   }
 }

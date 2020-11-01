@@ -8,17 +8,19 @@
   <p> {{ this.userData.website }}</p>
 
 
-<span>todos</span>
+<!-- <span>todos</span>
   <ul>
     <li *ngFor="let item of (todo | async)">
       {{ item.id }}
     </li>
-  </ul>
+  </ul> -->
 
   <span>posts</span>
   <ul>
-    <li *ngFor="let item of (post | async)">
+    <li *ngFor="let item of (post$ | async) | slice:0:show; let i=index">
       {{ item.id }}
     </li>
   </ul>
 </ng-container>
+
+<button *ngIf="show < (post$ | async)?.length" (click)="showMore()">show more</button>

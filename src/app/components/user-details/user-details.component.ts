@@ -15,7 +15,8 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
 
   userId;
   userData;
-  post: BehaviorSubject<any> = new BehaviorSubject(null);
+  show: number;
+  post$: BehaviorSubject<any> = new BehaviorSubject(null);
   todo: BehaviorSubject<any> = new BehaviorSubject(null);
   todosSub$: Subscription;
   postsSub$: Subscription;
@@ -24,7 +25,10 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
               private shared: SharedService,
               private todos: GetUserTodosService,
               private posts: GetUserPostsService
-              ) { }
+              ) {
+                this.show = 0;
+                this.showMore();
+               }
 
   ngOnInit(): void {
     this.getId();
@@ -34,35 +38,36 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
   getData(): void {
     this.dataSub$ = this.shared.data.subscribe(users => {
       if (users) {
-        if (users.length > this.userId) {
-          this.userData = users[this.userId];
+        if (users.length >= this.userId) {
+          this.userData = users[this.userId - 1];
           this.getTodos();
           this.getPosts();
         }
-      } else {
-        console.log('no page found');
       }
     });
   }
 
   getId(): void {
-    this.userId = +this.route.snapshot.paramMap.get('id') - 1;
+    this.userId = +this.route.snapshot.paramMap.get('id');
   }
 
   getTodos() {
     this.todosSub$ = this.todos.getUsersTodos(this.userId)
     .subscribe(todos => {
-      console.log();
       this.todo.next(todos);
     });
   }
 
   getPosts() {
     this.postsSub$ = this.posts.getUserPosts(this.userId)
-    .subscribe(posts => {
-      this.post.next(posts);
+    .subscribe(result => {
+      this.post$.next(result);
     });
 
+  }
+
+  showMore() {
+    this.show += 2;
   }
 
   ngOnDestroy() {
