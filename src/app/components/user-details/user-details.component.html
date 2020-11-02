@@ -1,29 +1,45 @@
+<app-go-home></app-go-home>
+<app-go-back></app-go-back>
 
-  <app-go-home></app-go-home>
-  <app-go-back></app-go-back>
-<ng-container *ngIf="userData">
-  <p> {{ this.userData.id }}</p>
-  <p> {{ this.userData.name }}</p>
-  <p> {{ this.userData.address.street }}</p>
-  <p> {{ this.userData.address.suite }}</p>
-  <p> {{ this.userData.address.zipcode }}</p>
-  <p> {{ this.userData.address.city }}</p>
-  <p> {{ this.userData.website }}</p>
+<div class="tabset" *ngIf="userData">
+  <!-- Tab 1 -->
+  <input type="radio" name="tabset" id="tab1" aria-controls="profile" checked>
+  <label for="tab1">Profile</label>
+  <!-- Tab 2 -->
+  <input type="radio" name="tabset" id="tab2" aria-controls="todos">
+  <label for="tab2">Todos</label>
+  <!-- Tab 3 -->
+  <input type="radio" name="tabset" id="tab3" aria-controls="posts">
+  <label for="tab3">Posts</label>
 
+  <div class="tab-panels">
+    <section id="profile" class="tab-panel">
+      <h2>profile</h2>
+      <p> {{ this.userData.id }}</p>
+      <p> {{ this.userData.name }}</p>
+      <p> {{ this.userData.address.street }}</p>
+      <p> {{ this.userData.address.suite }}</p>
+      <p> {{ this.userData.address.zipcode }}</p>
+      <p> {{ this.userData.address.city }}</p>
+      <p> {{ this.userData.website }}</p>
+  </section>
+    <section id="todos" class="tab-panel">
+      <h2>todos</h2>
+      <ul>
+        <li *ngFor="let item of (todo | async)">
+          {{ item.id }}
+        </li>
+      </ul>
+    </section>
+    <section id="posts" class="tab-panel">
+      <h2>posts</h2>
+      <ul>
+        <li *ngFor="let item of (post$ | async) | slice:0:show; let i=index">
+          {{ item.id }}
+        </li>
+      </ul>
+      <button *ngIf="show < (post$ | async)?.length" (click)="showMore()">show more</button>
+    </section>
+  </div>
 
-<span>todos</span>
-  <ul>
-    <li *ngFor="let item of (todo | async)">
-      {{ item.id }}
-    </li>
-  </ul>
-
-  <span>posts</span>
-  <ul>
-    <li *ngFor="let item of (post$ | async) | slice:0:show; let i=index">
-      {{ item.id }}
-    </li>
-  </ul>
-</ng-container>
-
-<button *ngIf="show < (post$ | async)?.length" (click)="showMore()">show more</button>
+</div>
