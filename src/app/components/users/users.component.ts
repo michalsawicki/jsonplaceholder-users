@@ -15,6 +15,7 @@ export class UsersComponent implements OnInit {
 
   ngOnInit(): void {
     this.data$ = this.shared.data;
+    console.log(this.data$);
   }
 
   postData(value) {

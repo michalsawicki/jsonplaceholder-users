@@ -5,22 +5,20 @@
   </div>
 </div>
 
-<!-- table with users -->
-<table *ngIf="(data$ | async)" class="users-table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">User</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let item of (data$ | async); index as id ">
-      <td scope="row">{{ item.id }}</td>
-      <td>
-        <a [routerLink]="['/app/users', id + 1]" (click)="postData(item)">
-       {{ item.name }}
-      </a>
-      </td>
-    </tr>
-  </tbody>
-</table>
+  <!-- table with users -->
+  <table *ngIf="(data$ | async)" class="users-table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">User</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of (data$ | async); index as id" [routerLink]="['/app/users', id + 1]" (click)="postData(item)">
+        <td scope="row">{{ item.id }}</td>
+        <td>
+          {{ item.name }}
+        </td>
+      </tr>
+    </tbody>
+  </table>

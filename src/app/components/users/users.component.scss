@@ -1,0 +1,71 @@
+@import '../../../styles.scss';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: radial-gradient($primary-gradient, $secondary-gradient);
+}
+
+
+table {
+  background-color: $table-bg;
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 7px;
+  padding: 30px;
+  max-width: 780px;
+  width: 100%;
+  margin:auto;
+
+  > thead,
+  > tbody,
+  > tfoot {
+    > tr {
+      > th,
+      > td {
+        padding: $table-cell-padding;
+        line-height: 20px;
+        text-align: left;
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  th {
+    font-weight: 700;
+    font-size: $table-font-size;
+    color: $table-head;
+    vertical-align: bottom;
+    padding: 0 $table-cell-padding !important;
+  }
+
+  td {
+    vertical-align: middle;
+    background:$table-bg-accent;
+    box-shadow: $td-box-shadow;
+    transition:all .2s ease;
+    font-size: $table-font-size;
+    color: $table-text;
+
+    &:last-child {
+      border-radius: 0 6px 6px 0;
+    }
+
+    &:first-child {
+      border-radius: 6px 0 0 6px;
+    }
+  }
+
+  tr {
+    &:hover {
+      td {
+        background-color: $table-bg-hover;
+        color:$table-cell-hover;
+      }
+    }
+  }
+}
