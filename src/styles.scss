@@ -1,8 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
 @import './app/scss/variables';
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 body {
   margin: 0;
-  // background: linear-gradient($primary-gradient, $secondary-gradient);
+  background: linear-gradient($primary-gradient, $secondary-gradient);
   min-height: 100vh;
+  font-family: 'Montserrat';
+}
+
+button {
+  cursor: pointer;
+  font-family: 'Montserrat';
+  border: none;
+}
+
+.button{
+  padding: 15px 0;
+  border: 1px solid $accent;
+  background-color: transparent;
+  color: $accent;
+  font-family: 'Montserrat';
+
+  &:hover {
+    background-color: $top-btn-hover
+  }
 }

@@ -55,6 +55,7 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
     this.todosSub$ = this.todos.getUsersTodos(this.userId)
     .subscribe(todos => {
       this.todo.next(todos);
+      console.log(this.todo.value);
     });
   }
 

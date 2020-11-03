@@ -1,13 +1,13 @@
-$primary-gradient: #efefef;
-$secondary-gradient: #d8d8d8;
+$primary-gradient: #2c2c2cee;
+$secondary-gradient: #626161;
 $table-cell-padding:14px;
 $table-bg:transparent;
-$table-bg-accent:#fff;
-$table-bg-hover:#f7f8fb;
+$table-bg-accent:rgb(255, 176, 29);
+$table-bg-hover:#f1db90;
 $table-bg-active: $table-bg-hover;
-$table-head: rgb(99, 99, 99);
+$table-head: #faa507;
 $td-box-shadow: 0 3px 2px rgba(0,0,0,.08);
-$table-text: #777;
+$table-text: rgb(42, 42, 42);
 $table-cell-hover: #444;
 $container-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 $table-font-size: 13px;
@@ -16,4 +16,23 @@ $table-font-size: 13px;
 
 $tab-border-color: #000;
 $light: #fff;
-$tab-indicator: #06c;
+$dark: #000;
+$tab-active: rgb(250, 190, 78);
+$tab-inactive: rgb(250, 170, 20);
+$accent: rgb(247, 171, 31);
+$tab-bcg: rgb(250, 190, 78);
+$tab-indicator: #fff;
+
+// to dos
+$todo-item-hover: #f8c391;
+$todo-item-border: 1px solid #7878789a;
+$todo-item-bs: 1px 1px 6px 0px rgba(0, 0, 0, 0.09);
+$not-completed: #ff0000;
+$completed: #008000;
+
+// posts
+$post-item-border: 1px solid #292929fd;
+
+// btn
+$top-btn-hover: rgba(255, 166, 0, 0.183);
+$show-more-btn-hover: rgba(0, 0, 0, 0.782);
