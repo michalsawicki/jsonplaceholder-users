@@ -1,1 +1,12 @@
-
+@import '../styles.scss';
+.footer-copyright {
+  writing-mode: vertical-rl;
+  -webkit-text-orientation: mixed;
+  text-orientation: mixed;
+  position: fixed;
+  bottom: 5px;
+  font-size: 8px;
+  letter-spacing: 2px;
+  right: 0;
+  color: $accent;
+}
