@@ -16,6 +16,7 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
   userId;
   userData;
   show: number;
+  notFound: boolean;
   post$: BehaviorSubject<any> = new BehaviorSubject(null);
   todo: BehaviorSubject<any> = new BehaviorSubject(null);
   todosSub$: Subscription;
@@ -39,9 +40,12 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
     this.dataSub$ = this.shared.data.subscribe(users => {
       if (users) {
         if (users.length >= this.userId) {
+          this.notFound = false;
           this.userData = users[this.userId - 1];
           this.getTodos();
           this.getPosts();
+        } else {
+          this.notFound = true;
         }
       }
     });
@@ -55,7 +59,6 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
     this.todosSub$ = this.todos.getUsersTodos(this.userId)
     .subscribe(todos => {
       this.todo.next(todos);
-      console.log(this.todo.value);
     });
   }
 

@@ -1,80 +1,91 @@
-<div class="top-page-buttons">
-  <app-go-home></app-go-home>
-  <app-go-back></app-go-back>
-</div>
+<div *ngIf="userData" class="tabs-content">
 
-<div class="tabset" *ngIf="userData">
-  <!-- Tab 1 -->
-  <input type="radio" name="tabset" id="tab1" aria-controls="profile" checked>
-  <label for="tab1">Profile</label>
-  <!-- Tab 2 -->
-  <input type="radio" name="tabset" id="tab2" aria-controls="todos">
-  <label for="tab2">Todos</label>
-  <!-- Tab 3 -->
-  <input type="radio" name="tabset" id="tab3" aria-controls="posts">
-  <label for="tab3">Posts</label>
-
-  <div class="tab-panels">
-    <section id="profile" class="tab-panel">
-      <table class="user-details--profile">
-        <thead>
-          <tr>
-            <th scope="col"></th>
-            <th scope="col"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td scope="row">Name:</td>
-            <td>
-              {{ this.userData.name }}
-            </td>
-          </tr>
-          <tr>
-            <td scope="row">Address:</td>
-            <td>
-              {{ this.userData.address.street }},  {{ this.userData.address.suite }}, {{ this.userData.address.zipcde }} {{ this.userData.address.city }}
-            </td>
-          </tr>
-          <tr>
-            <td scope="row">Contact:</td>
-            <td>
-              {{ this.userData.phone }}
-            </td>
-          </tr>
-          <tr>
-            <td scope="row">website:</td>
-            <td>
-              {{ this.userData.website }}
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-    <section id="todos" class="tab-panel">
-        <p *ngFor="let item of (todo | async)" class="todo-item">
-          {{ item.title | titlecase}}
-          <span class="{{item.completed ? 'completed' : 'not-completed'}}">
-            <ng-container *ngIf="item.completed">
-              &#x02713;
-            </ng-container>
-          <ng-container *ngIf="!item.completed">
-            &#x02717;
-          </ng-container>
-          </span>
-
-        </p>
-    </section>
-    <section id="posts" class="tab-panel">
-      <div class="posts" *ngFor="let item of (post$ | async) | slice:0:show; let i=index">
-        <h4>
-          {{ item.title | titlecase }}
-        </h4>
-        <p>{{item.body | titlecase}}</p>
-
-      </div>
-      <button class="button show-more-button" class="show-more-btn" *ngIf="show < (post$ | async)?.length" (click)="showMore()">show more</button>
-    </section>
+  <div class="top-page-buttons">
+      <app-go-home></app-go-home>
+      <app-go-back></app-go-back>
   </div>
 
+  <div aria-label="user-profile-details" class="tabset">
+        <!-- Tab 1 -->
+        <input type="radio" name="tabset" id="tab1" aria-controls="profile" checked="checked">
+        <label aria-label="profile label" for="tab1">Profile</label>
+        <!-- Tab 2 -->
+        <input type="radio" name="tabset" id="tab2" aria-controls="todos">
+        <label aria-label="todos-label" for="tab2">Todos</label>
+        <!-- Tab 3 -->
+        <input type="radio" name="tabset" id="tab3" aria-controls="posts">
+        <label aria-label="posts-label" for="tab3">Posts</label>
+
+        <div class="tab-panels">
+          <section id="profile" class="tab-panel">
+            <table role="table" class="user-details--profile">
+              <thead>
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                    <td scope="row">Name:</td>
+                    <td aria-label="user name">
+                        {{ this.userData.name }}
+                    </td>
+                </tr>
+                <tr >
+                    <td scope="row">Address:</td>
+                    <td aria-label="user-address">
+                        {{ this.userData.address.street }},
+                        {{ this.userData.address.suite }},
+                        {{ this.userData.address.zipcde }}
+                        {{ this.userData.address.city }}
+                    </td>
+                </tr>
+                <tr>
+                    <td scope="row">Contact:</td>
+                    <td aria-label="user-contact-phone">
+                        {{ this.userData.phone }}
+                    </td>
+                </tr>
+                <tr>
+                    <td scope="row">website:</td>
+                    <td aria-label="user-website-address">
+                        {{ this.userData.website }}
+                    </td>
+                </tr>
+                    </tbody>
+            </table>
+            </section>
+            <section id="todos" class="tab-panel">
+                <p *ngFor="let item of (todo | async)" class="todo-item">
+                    {{ item.title | titlecase}}
+                    <span class="{{item.completed ? 'completed' : 'not-completed'}}">
+                        <ng-container *ngIf="item.completed">
+                            &#x02713;
+                        </ng-container>
+                        <ng-container *ngIf="!item.completed">
+                            &#x02717;
+                        </ng-container>
+                    </span>
+
+                </p>
+            </section>
+            <section id="posts" class="tab-panel">
+                <div class="posts" *ngFor="let item of (post$ | async) | slice:0:show; let i=index">
+                    <h4 title="post-title">
+                        {{ item.title | titlecase }}
+                    </h4>
+                    <p title="post-content">{{item.body | titlecase}}</p>
+
+                </div>
+                <button class="button show-more-button" class="show-more-btn" *ngIf="show < (post$ | async)?.length" (click)="showMore()">show more</button>
+            </section>
+        </div>
+    </div>
 </div>
+
+<div *ngIf="!this.userData" class="not-found">
+  <app-go-back></app-go-back>
+  <h1 class="not-found--header">404 - user not found</h1>
+</div>
+

@@ -1,24 +1,25 @@
 <!-- loading text before data is recieved -->
 <div *ngIf="!(data$ | async)" class="loading-spinner">
-  <div class="spinner-border" role="status">
-    <span class="sr-only">Loading...</span>
-  </div>
+    <div class="spinner-border" role="status">
+        <span aria-label="loading-indicator" class="sr-only">Loading...</span>
+    </div>
 </div>
 
-  <!-- table with users -->
-  <table *ngIf="(data$ | async)" class="users-table">
+<!-- table with users -->
+<table role="table" aria-label="users-tables" *ngIf="(data$ | async)" class="users-table">
     <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">User</th>
-      </tr>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">User</th>
+        </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of (data$ | async); index as id" [routerLink]="['/app/users', id + 1]" (click)="postData(item)">
-        <td scope="row">{{ item.id }}</td>
-        <td>
-          {{ item.name }}
-        </td>
-      </tr>
+        <tr *ngFor="let item of (data$ | async); index as id" [routerLink]="['/app/users', id + 1]" (click)="postData(item)">
+            <td aria-label="user-id" scope="row">{{ item.id }}</td>
+            <td aria-label="user-name">
+                {{ item.name }}
+            </td>
+        </tr>
     </tbody>
-  </table>
+</table>
+

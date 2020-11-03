@@ -1,141 +1,168 @@
 @import '../../../styles.scss';
 
-.top-page-buttons {
-  width: 100%;
-}
-.tabset > input[type="radio"] {
-  position: absolute;
-  left: -200vw;
-}
+.tabs-content {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 
-.tabset .tab-panel {
-  display: none;
-}
-
-.tabset > input:first-child:checked ~ .tab-panels > .tab-panel:first-child,
-.tabset > input:nth-child(3):checked ~ .tab-panels > .tab-panel:nth-child(2),
-.tabset > input:nth-child(5):checked ~ .tab-panels > .tab-panel:nth-child(3),
-.tabset > input:nth-child(7):checked ~ .tab-panels > .tab-panel:nth-child(4),
-.tabset > input:nth-child(9):checked ~ .tab-panels > .tab-panel:nth-child(5),
-.tabset > input:nth-child(11):checked ~ .tab-panels > .tab-panel:nth-child(6) {
-  display: block;
-}
-
-
-.tabset > label {
-  position: relative;
-  display: inline-block;
-  padding: 15px 25px 25px;
-  border-bottom: 0;
-  cursor: pointer;
-  width: 25%;
-  margin: 0 5px 0 0;
-  background-color: $tab-inactive;
-  border-radius: 3px;
-}
-
-.tabset > label::after {
-  content: "";
-  position: absolute;
-  left: 25px;
-  bottom: 10px;
-  width: 35%;
-  height: 3px;
-}
-
-
-.tabset > label:hover::after,
-.tabset > input:focus + label::after,
-.tabset > input:checked + label::after {
-  background: $dark;
-  color: $dark;
-}
-
-.tabset > input:checked + label {
-  margin-bottom: 2px;
-  border-radius: 4px 4px 0 0;
-  border-bottom: 0;
-  background-color: $tab-active;
-}
-
-.tab-panel {
-  padding: 30px 0;
-  border-radius: 3px;
-  background-color: $tab-bcg;
-  box-shadow: $container-box-shadow;
-
-  .user-details--profile {
+  .top-page-buttons {
     width: 100%;
-    tr {
-      padding: 10px 0;
-      &:hover {
-        // background-color: $table-bg-hover;
-        color:$table-cell-hover;
-      }
-      td {
-        padding: 10px 5px;
+  }
+  .tabset > input[type="radio"] {
+    position: absolute;
+    left: -200vw;
+  }
 
-        &:nth-of-type(1) {
-          text-align: right;
-          width: 100px;
+  .tabset .tab-panel {
+    display: none;
+  }
+
+  .tabset > input:first-child:checked ~ .tab-panels > .tab-panel:first-child,
+  .tabset > input:nth-child(3):checked ~ .tab-panels > .tab-panel:nth-child(2),
+  .tabset > input:nth-child(5):checked ~ .tab-panels > .tab-panel:nth-child(3),
+  .tabset > input:nth-child(7):checked ~ .tab-panels > .tab-panel:nth-child(4),
+  .tabset > input:nth-child(9):checked ~ .tab-panels > .tab-panel:nth-child(5),
+  .tabset > input:nth-child(11):checked ~ .tab-panels > .tab-panel:nth-child(6) {
+    display: block;
+  }
+
+
+  .tabset > label {
+    position: relative;
+    display: inline-block;
+    padding: 15px 25px 25px;
+    border-bottom: 0;
+    cursor: pointer;
+    width: 25%;
+    margin: 0 5px 0 0;
+    background-color: $tab-inactive;
+    border-radius: 3px;
+
+    @media screen and(max-width: 786px) {
+      font-size: 12px;
+      padding: 15px;
+
+    }
+  }
+
+  .tabset > label::after {
+    content: "";
+    position: absolute;
+    left: 25px;
+    bottom: 10px;
+    width: 35%;
+    height: 3px;
+    @media screen and(max-width: 786px) {
+      left: 15px;
+
+    }
+  }
+
+
+  .tabset > label:hover::after,
+  .tabset > input:focus + label::after,
+  .tabset > input:checked + label::after {
+    background: $dark;
+    color: $dark;
+  }
+
+  .tabset > input:checked + label {
+    margin-bottom: 2px;
+    border-radius: 4px 4px 0 0;
+    border-bottom: 0;
+    background-color: $tab-active;
+
+
+  }
+
+  .tab-panel {
+    padding: 30px 0;
+    border-radius: 3px;
+    background-color: $tab-bcg;
+    box-shadow: $container-box-shadow;
+
+    .user-details--profile {
+      width: 100%;
+      tr {
+        padding: 10px 0;
+        &:hover {
+          // background-color: $table-bg-hover;
+          color:$table-cell-hover;
+        }
+        td {
+          padding: 10px 5px;
+
+          &:nth-of-type(1) {
+            text-align: right;
+            width: 100px;
+          }
         }
       }
     }
+
+    .todo-item {
+      display: flex;
+      justify-content: space-between;
+      border-radius: 10px;
+      padding: 15px;
+      margin: 10px;
+      border: $todo-item-border;
+
+      > span {
+        height: 100%;
+        width:25px;
+        height:25px;
+        border-radius: 50%;
+        color: $not-completed;
+        border: 2px solid $not-completed;
+        text-align: center;
+      }
+
+      &:hover {
+        background-color: $todo-item-hover;
+        cursor: pointer;
+      }
+    }
+    .completed {
+      color: $completed !important;
+      border-color: $completed !important;
+    }
+
+    .posts {
+      border-bottom: $post-item-border;
+      margin: 25px 20px 40px;
+    }
+
+    .show-more-btn {
+      width: 100%;
+      padding: 15px 0;
+      background-color: $dark;
+      color: $accent;
+
+      &:hover {
+        background-color: $show-more-btn-hover;
+      }
+    }
+
   }
 
-  .todo-item {
+  *,
+  *:before,
+  *:after {
+    box-sizing: border-box;
+  }
+
+  .tabset {
+    width: 90%;
+    margin: 50px auto;
+  }
+
+}
+
+.not-found {
+  &--header {
     display: flex;
-    justify-content: space-between;
-    border-radius: 10px;
-    padding: 15px;
-    margin: 10px;
-    border: $todo-item-border;
-
-    > span {
-      height: 100%;
-      width:25px;
-      height:25px;
-      border-radius: 50%;
-      color: $not-completed;
-      border: 2px solid $not-completed;
-      text-align: center;
-    }
-
-    &:hover {
-      background-color: $todo-item-hover;
-      cursor: pointer;
-    }
-  }
-  .completed {
-    color: $completed !important;
-    border-color: $completed !important;
-  }
-
-  .posts {
-    border-bottom: $post-item-border;
-    margin: 25px 20px 40px;
-  }
-
-  .show-more-btn {
-    width: 100%;
-    padding: 15px 0;
-    background-color: $dark;
+    justify-content: center;
     color: $accent;
-
-    &:hover {
-      background-color: $show-more-btn-hover;
-    }
   }
-
-}
-
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-}
-
-.tabset {
-  max-width: 65em;
-  margin: 25px;
 }
