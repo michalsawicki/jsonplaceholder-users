@@ -1,8 +1,6 @@
 <!-- loading text before data is recieved -->
-<div *ngIf="!(data$ | async)" class="loading-spinner">
-    <div class="spinner-border" role="status">
-        <span aria-label="loading-indicator" class="sr-only">Loading...</span>
-    </div>
+<div *ngIf="!(data$ | async)"  class="loading">
+        <div role="status" aria-label="loading-indicator" class="sr-only">Loading...</div>
 </div>
 
 <!-- table with users -->
